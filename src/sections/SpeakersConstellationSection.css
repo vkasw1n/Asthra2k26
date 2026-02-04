@@ -3,13 +3,38 @@
   width: 100%;
   padding: 100px 20px;
   display: block;
-  background: linear-gradient(180deg, 
-    rgba(15, 10, 46, 0.5) 0%, 
-    rgba(26, 21, 80, 0.5) 50%, 
-    rgba(10, 14, 39, 0.5) 100%);
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(42, 111, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(200, 140, 60, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, 
+      rgba(15, 10, 46, 0.5) 0%, 
+      rgba(26, 21, 80, 0.5) 50%, 
+      rgba(10, 14, 39, 0.5) 100%);
   visibility: visible;
   opacity: 1;
   z-index: 5;
+  position: relative;
+}
+
+.speakers-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 10% 20%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 90% 80%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200px 200px;
+  animation: data-float 30s linear infinite;
+}
+
+@keyframes data-float {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
 }
 
 .section-container {

@@ -34,15 +34,34 @@ body {
   overflow: hidden;
 }
 
-/* Glowing text effect */
+/* Glowing text effect - Cinematic Marvel Style */
 .glow-text {
   text-shadow: 
-    0 0 10px var(--portal-orange),
-    0 0 20px var(--energy-gold),
-    0 0 30px rgba(255, 140, 26, 0.4);
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor,
+    0 0 80px rgba(42, 111, 255, 0.3);
   font-family: var(--font-futuristic);
   font-weight: 700;
   color: var(--primary-white);
+  animation: text-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes text-glow-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor,
+      0 0 80px rgba(42, 111, 255, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px currentColor,
+      0 0 30px currentColor,
+      0 0 60px currentColor,
+      0 0 120px rgba(42, 111, 255, 0.5);
+  }
 }
 
 .glow-text-accent {

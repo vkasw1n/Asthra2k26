@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import SpaceBackground from './components/3D/SpaceBackground';
 import SpiderMan from './components/3D/SpiderMan';
 import MysticPortal from './components/3D/MysticPortal';
+import VolumetricLightRays from './components/3D/VolumetricLightRays';
 import Navigation from './components/Navigation';
 import MarvelLoader from './components/MarvelLoader';
 import LandingSection from './sections/LandingSection';
@@ -35,6 +36,7 @@ function PortalZoomController({ isZooming }) {
 }
 
 function App() {
+  const appRef = useRef(null);
   const [currentSection, setCurrentSection] = useState('landing');
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
@@ -48,6 +50,21 @@ function App() {
       // Play ambient music here
     }
   }, [musicEnabled]);
+
+  useEffect(() => {
+    const handleParallax = (event) => {
+      if (!appRef.current) {
+        return;
+      }
+      const x = event.clientX / window.innerWidth - 0.5;
+      const y = event.clientY / window.innerHeight - 0.5;
+      appRef.current.style.setProperty('--parallax-x', `${x * 30}px`);
+      appRef.current.style.setProperty('--parallax-y', `${y * 20}px`);
+    };
+
+    window.addEventListener('mousemove', handleParallax);
+    return () => window.removeEventListener('mousemove', handleParallax);
+  }, []);
 
   const handleLoadComplete = () => {
     setIsLoading(false);
@@ -78,9 +95,17 @@ function App() {
   const CurrentSection = sections.find(s => s.id === currentSection)?.component || LandingSection;
 
   return (
-    <div className="app-container">
+    <div className="app-container" ref={appRef}>
       {/* Marvel-style Loading Screen */}
       {isLoading && <MarvelLoader onLoadComplete={handleLoadComplete} />}
+
+      {/* Cosmic backdrop layers */}
+      <div className="cosmic-backdrop">
+        <div className="nebula-layer layer-1"></div>
+        <div className="nebula-layer layer-2"></div>
+        <div className="galaxy-layer"></div>
+        <div className="fog-layer"></div>
+      </div>
 
       {/* 3D Background Canvas */}
       <div className="canvas-container">
@@ -95,6 +120,7 @@ function App() {
         >
           <PortalZoomController isZooming={cameraZoom} />
           <SpaceBackground />
+          <VolumetricLightRays />
           <Suspense fallback={null}>
             {/* Spider-Man hanging at the top right */}
             {currentSection === 'landing' && (
@@ -102,12 +128,11 @@ function App() {
             )}
             
             {/* Doctor Strange Portal */}
-            {currentSection === 'landing' && cameraZoom && (
+            {currentSection === 'landing' && (
               <MysticPortal 
-                position={[0, 0, -5]} 
-                scale={1.5}
-                isZooming={cameraZoom}
-                onZoomThrough={handlePortalZoom}
+                position={[0, 0, -6]} 
+                scale={1.15}
+                fullScreen={false}
               />
             )}
           </Suspense>
@@ -115,6 +140,23 @@ function App() {
 
           <Preload all />
         </Canvas>
+      </div>
+
+      {/* Multiverse energy overlays */}
+      <div className="energy-streaks">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <span key={`streak-${index}`} className="energy-streak"></span>
+        ))}
+      </div>
+      <div className="nebula-lightning">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <span key={`flash-${index}`} className="lightning-flash"></span>
+        ))}
+      </div>
+      <div className="dimension-debris">
+        {Array.from({ length: 7 }).map((_, index) => (
+          <span key={`debris-${index}`} className="debris-rock"></span>
+        ))}
       </div>
 
       {/* Navigation */}

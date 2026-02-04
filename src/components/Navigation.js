@@ -1,8 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import soundManager from '../utils/soundManager';
 import './Navigation.css';
 
 export default function Navigation({ sections, currentSection, setCurrentSection, musicEnabled, setMusicEnabled }) {
   const [navOpen, setNavOpen] = useState(false);
+
+  useEffect(() => {
+    if (musicEnabled) {
+      soundManager.enable();
+    } else {
+      soundManager.disable();
+    }
+  }, [musicEnabled]);
+
+  const handleNavClick = (sectionId) => {
+    soundManager.playEnergyBurst();
+    setCurrentSection(sectionId);
+    setNavOpen(false);
+  };
+
+  const handleMusicToggle = () => {
+    const newState = soundManager.toggle();
+    setMusicEnabled(newState);
+  };
 
   return (
     <nav className="navigation">
@@ -26,10 +46,8 @@ export default function Navigation({ sections, currentSection, setCurrentSection
             <li key={section.id}>
               <button
                 className={`nav-link ${currentSection === section.id ? 'active' : ''}`}
-                onClick={() => {
-                  setCurrentSection(section.id);
-                  setNavOpen(false);
-                }}
+                onClick={() => handleNavClick(section.id)}
+                onMouseEnter={() => soundManager.playButtonHover()}
               >
                 {section.label}
               </button>
@@ -40,10 +58,11 @@ export default function Navigation({ sections, currentSection, setCurrentSection
         {/* Music Toggle */}
         <button 
           className={`music-toggle ${musicEnabled ? 'active' : ''}`}
-          onClick={() => setMusicEnabled(!musicEnabled)}
-          title={musicEnabled ? 'Music On' : 'Music Off'}
+          onClick={handleMusicToggle}
+          onMouseEnter={() => soundManager.playButtonHover()}
+          title={musicEnabled ? 'Sound On' : 'Sound Off'}
         >
-          {musicEnabled ? '♫' : '♪'}
+          {musicEnabled ? '🔊' : '🔇'}
         </button>
       </div>
 

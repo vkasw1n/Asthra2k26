@@ -71,12 +71,13 @@ export default function LandingSection({ setCurrentSection, onPortalZoom }) {
             </div>
 
             <button className="enter-button" onClick={handleEnterUniverse}>
-              <span className="button-text">ENTER THE UNIVERSE</span>
+              <span className="button-text">ENTER THE MULTIVERSE</span>
               <div className="button-energy"></div>
+              <div className="button-glow-ring"></div>
               <div className="button-particles">
-                {[...Array(8)].map((_, i) => (
+                {[...Array(12)].map((_, i) => (
                   <div key={i} className="button-particle" style={{
-                    transform: `rotate(${i * 45}deg) translateX(0px)`
+                    '--angle': `${i * 30}deg`
                   }}></div>
                 ))}
               </div>

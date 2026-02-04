@@ -57,36 +57,38 @@
 }
 
 .hero-title {
-  font-size: clamp(40px, 8vw, 80px);
+  font-size: clamp(40px, 8vw, 90px);
   font-weight: 900;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
+  text-transform: uppercase;
 }
 
 .title-word {
   display: inline-block;
-  background: linear-gradient(135deg, #ff8c1a 0%, #fff5e6 50%, #ff8c1a 100%);
+  background: linear-gradient(135deg, #00d4ff 0%, #00ffd5 50%, #2a6fff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: title-shimmer 3s linear infinite;
-  text-shadow: 0 0 80px rgba(255, 140, 26, 0.4);
-  filter: drop-shadow(0 0 20px rgba(255, 140, 26, 0.5));
+  animation: title-shimmer 4s linear infinite;
+  filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.6))
+          drop-shadow(0 0 60px rgba(42, 111, 255, 0.4));
 }
 
 .title-word.accent {
-  background: linear-gradient(135deg, #5a2a82 0%, #00ffd5 50%, #5a2a82 100%);
+  background: linear-gradient(135deg, #ffd27a 0%, #ff8c1a 50%, #ffd27a 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: title-shimmer 3s linear infinite;
-  filter: drop-shadow(0 0 20px rgba(0, 255, 213, 0.5));
+  animation: title-shimmer 4s linear infinite;
+  filter: drop-shadow(0 0 30px rgba(255, 140, 26, 0.8))
+          drop-shadow(0 0 60px rgba(255, 210, 122, 0.5));
 }
 
 @keyframes title-shimmer {
@@ -135,41 +137,64 @@
   max-width: 600px;
 }
 
-/* Enter Button - Arc Reactor Style */
+/* Enter Button - Doctor Strange Portal Style */
 .enter-button {
   position: relative;
-  background: linear-gradient(135deg, var(--portal-orange), var(--energy-gold));
-  border: 2px solid var(--portal-orange);
-  color: var(--dark-bg-primary);
-  padding: 20px 60px;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #ff8c1a 0%, #ffd27a 50%, #ff8c1a 100%);
+  background-size: 200% auto;
+  border: 3px solid #ff8c1a;
+  color: #0b0b0b;
+  padding: 22px 70px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  border-radius: 12px;
   cursor: pointer;
   margin: 40px auto;
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 0 40px rgba(255, 140, 26, 0.5),
-    0 0 60px rgba(255, 210, 122, 0.3),
-    inset 0 0 40px rgba(255, 255, 255, 0.1);
+    0 0 50px rgba(255, 140, 26, 0.6),
+    0 0 80px rgba(255, 210, 122, 0.4),
+    0 10px 40px rgba(255, 140, 26, 0.3),
+    inset 0 0 50px rgba(255, 255, 255, 0.2);
+  animation: button-pulse 3s ease-in-out infinite;
+}
+
+@keyframes button-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 50px rgba(255, 140, 26, 0.6),
+      0 0 80px rgba(255, 210, 122, 0.4),
+      0 10px 40px rgba(255, 140, 26, 0.3),
+      inset 0 0 50px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 70px rgba(255, 140, 26, 0.8),
+      0 0 120px rgba(255, 210, 122, 0.6),
+      0 10px 60px rgba(255, 140, 26, 0.5),
+      inset 0 0 70px rgba(255, 255, 255, 0.3);
+  }
 }
 
 .enter-button:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: translateY(-8px) scale(1.08);
+  background-position: right center;
   box-shadow: 
-    0 0 60px rgba(255, 140, 26, 0.8),
-    0 0 100px rgba(255, 210, 122, 0.6),
-    0 0 140px rgba(255, 140, 26, 0.4),
-    inset 0 0 60px rgba(255, 255, 255, 0.2);
-  border-color: var(--energy-gold);
+    0 0 80px rgba(255, 140, 26, 1),
+    0 0 140px rgba(255, 210, 122, 0.8),
+    0 0 200px rgba(255, 140, 26, 0.5),
+    0 15px 60px rgba(255, 140, 26, 0.6),
+    inset 0 0 80px rgba(255, 255, 255, 0.3);
+  border-color: #ffd27a;
 }
 
 .button-text {
   position: relative;
   z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .button-energy {
@@ -179,8 +204,8 @@
   width: 0;
   height: 0;
   background: radial-gradient(circle, 
-    rgba(255, 140, 26, 0.6) 0%, 
-    rgba(255, 210, 122, 0.3) 50%,
+    rgba(255, 210, 122, 0.6) 0%, 
+    rgba(255, 140, 26, 0.3) 50%,
     transparent 100%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -188,8 +213,36 @@
 }
 
 .enter-button:hover .button-energy {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
+}
+
+.button-glow-ring {
+  position: absolute;
+  inset: -8px;
+  border: 3px solid rgba(255, 140, 26, 0.4);
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: ring-rotate 3s linear infinite;
+}
+
+.enter-button:hover .button-glow-ring {
+  opacity: 1;
+}
+
+@keyframes ring-rotate {
+  0% {
+    transform: rotate(0deg);
+    border-color: rgba(255, 140, 26, 0.4);
+  }
+  50% {
+    border-color: rgba(0, 255, 213, 0.4);
+  }
+  100% {
+    transform: rotate(360deg);
+    border-color: rgba(255, 140, 26, 0.4);
+  }
 }
 
 .button-particles {
@@ -209,12 +262,17 @@
 
 .button-particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #ff8c1a;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffd27a 0%, #ff8c1a 100%);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 140, 26, 1);
+  box-shadow: 0 0 15px rgba(255, 140, 26, 1);
   animation: particle-explode 1.5s ease-out infinite;
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  margin-top: -3px;
+  margin-left: -3px;
 }
 
 @keyframes particle-explode {
@@ -223,7 +281,7 @@
     opacity: 1;
   }
   100% {
-    transform: rotate(var(--angle, 0deg)) translateX(80px);
+    transform: rotate(var(--angle, 0deg)) translateX(100px);
     opacity: 0;
   }
 }

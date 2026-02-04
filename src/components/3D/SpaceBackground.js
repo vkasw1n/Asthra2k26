@@ -214,32 +214,49 @@ export default function SpaceBackground() {
 
   const nebulaTexture = useMemo(() => {
     const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 512;
+    canvas.width = 1024;
+    canvas.height = 1024;
     const ctx = canvas.getContext('2d');
-    const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
-    gradient.addColorStop(0, 'rgba(50,120,255,0.25)');
-    gradient.addColorStop(0.4, 'rgba(120,60,255,0.18)');
-    gradient.addColorStop(0.7, 'rgba(255,120,80,0.08)');
-    gradient.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 512, 512);
+    
+    // Pillars of Creation-inspired nebula with blue, purple, and golden clouds
+    const gradient1 = ctx.createRadialGradient(300, 300, 0, 300, 300, 512);
+    gradient1.addColorStop(0, 'rgba(42, 111, 255, 0.4)');
+    gradient1.addColorStop(0.3, 'rgba(138, 43, 226, 0.35)');
+    gradient1.addColorStop(0.6, 'rgba(200, 140, 60, 0.2)');
+    gradient1.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = gradient1;
+    ctx.fillRect(0, 0, 1024, 1024);
+    
+    // Add second layer for depth
+    const gradient2 = ctx.createRadialGradient(700, 600, 0, 700, 600, 400);
+    gradient2.addColorStop(0, 'rgba(90, 42, 130, 0.3)');
+    gradient2.addColorStop(0.4, 'rgba(42, 111, 255, 0.2)');
+    gradient2.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = gradient2;
+    ctx.fillRect(0, 0, 1024, 1024);
+    
     return new THREE.CanvasTexture(canvas);
   }, []);
 
   return (
     <group>
-      <ambientLight intensity={0.4} color="#ffffff" />
+      <ambientLight intensity={0.5} color="#8896ff" />
+      <pointLight position={[-100, 50, -50]} intensity={0.8} color="#2a6fff" distance={200} />
+      <pointLight position={[80, -60, 40]} intensity={0.6} color="#8a2be2" distance={180} />
 
-      {/* Nebula fog layers */}
+      {/* Nebula fog layers - Pillars of Creation style */}
       <group ref={nebulaRef} position={[0, 0, -200]}>
         <mesh rotation={[0, 0, Math.PI / 8]}>
-          <planeGeometry args={[1200, 1200]} />
-          <meshBasicMaterial map={nebulaTexture} transparent opacity={0.6} blending={THREE.AdditiveBlending} depthWrite={false} />
+          <planeGeometry args={[1400, 1400]} />
+          <meshBasicMaterial map={nebulaTexture} transparent opacity={0.7} blending={THREE.AdditiveBlending} depthWrite={false} />
         </mesh>
-        <mesh rotation={[0, 0, -Math.PI / 6]} position={[200, -100, -50]}>
-          <planeGeometry args={[1000, 1000]} />
-          <meshBasicMaterial map={nebulaTexture} transparent opacity={0.4} blending={THREE.AdditiveBlending} depthWrite={false} />
+        <mesh rotation={[0, 0, -Math.PI / 6]} position={[250, -150, -60]}>
+          <planeGeometry args={[1200, 1200]} />
+          <meshBasicMaterial map={nebulaTexture} transparent opacity={0.5} blending={THREE.AdditiveBlending} depthWrite={false} />
+        </mesh>
+        <mesh rotation={[0, 0, Math.PI / 4]} position={[-200, 100, -80]}>
+          <planeGeometry args={[1100, 1100]} />
+          <meshBasicMaterial map={nebulaTexture} transparent opacity={0.45} blending={THREE.AdditiveBlending} depthWrite={false} />
         </mesh>
       </group>
       
