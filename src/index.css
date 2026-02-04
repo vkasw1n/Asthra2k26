@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Audiowide&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+:root {
+  --primary-white: #fff5e6;
+  --secondary-gray: #cfcfcf;
+  --portal-orange: #ff8c1a;
+  --energy-gold: #ffd27a;
+  --cosmic-purple: #5a2a82;
+  --reality-blue: #2a6fff;
+  --quantum-teal: #00ffd5;
+  --dark-bg-primary: #050914;
+  --dark-bg-secondary: #0b1a2a;
+  --font-futuristic: 'Orbitron', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-audio: 'Audiowide', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #050914 0%, #0b1a2a 50%, #040810 100%);
+  color: var(--primary-white);
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 
+    0 0 10px var(--portal-orange),
+    0 0 20px var(--energy-gold),
+    0 0 30px rgba(255, 140, 26, 0.4);
+  font-family: var(--font-futuristic);
+  font-weight: 700;
+  color: var(--primary-white);
+}
+
+.glow-text-accent {
+  text-shadow: 
+    0 0 10px var(--quantum-teal),
+    0 0 20px var(--quantum-teal),
+    0 0 30px rgba(0, 255, 213, 0.4);
+  color: var(--quantum-teal);
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(11, 26, 42, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 140, 26, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 
+    0 0 30px rgba(255, 140, 26, 0.15),
+    inset 0 0 30px rgba(255, 140, 26, 0.05),
+    inset -1px -1px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Neon border */
+.neon-border {
+  border: 1px solid var(--portal-orange);
+  box-shadow: 
+    0 0 20px var(--portal-orange),
+    inset 0 0 20px rgba(255, 140, 26, 0.1);
+}
+
+/* Holographic effect */
+.holographic {
+  background: linear-gradient(135deg, 
+    rgba(255, 140, 26, 0.15) 0%, 
+    rgba(90, 42, 130, 0.15) 50%, 
+    rgba(0, 255, 213, 0.15) 100%);
+  border: 1px solid rgba(255, 140, 26, 0.4);
+  animation: holographic-shift 4s ease-in-out infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% {
+    background: linear-gradient(135deg, 
+      rgba(255, 140, 26, 0.15) 0%, 
+      rgba(90, 42, 130, 0.15) 50%, 
+      rgba(0, 255, 213, 0.15) 100%);
+  }
+  50% {
+    background: linear-gradient(135deg, 
+      rgba(0, 255, 213, 0.15) 0%, 
+      rgba(255, 140, 26, 0.15) 50%, 
+      rgba(90, 42, 130, 0.15) 100%);
+  }
+}
+
+/* Glowing button */
+.glow-button {
+  background: linear-gradient(135deg, var(--portal-orange), var(--energy-gold));
+  color: var(--dark-bg-primary);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-family: var(--font-futuristic);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 0 20px rgba(255, 140, 26, 0.5),
+    0 0 40px rgba(255, 210, 122, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.glow-button:hover {
+  box-shadow: 
+    0 0 30px rgba(255, 140, 26, 0.8),
+    0 0 60px rgba(255, 210, 122, 0.6),
+    0 0 90px rgba(255, 140, 26, 0.4);
+  transform: scale(1.08) translateY(-2px);
+  background: linear-gradient(135deg, #ff9933, #ffde99);
+}
+
+.glow-button:active {
+  transform: scale(0.96);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 140, 26, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--portal-orange), var(--cosmic-purple));
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 140, 26, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--energy-gold), var(--reality-blue));
+  box-shadow: 0 0 20px rgba(255, 140, 26, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .glass-panel {
+    padding: 16px;
+  }
+
+  .glow-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,301 @@
+/* Holographic Card Component */
+.hologram-card {
+  position: relative;
+  background: rgba(0, 8, 20, 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 140, 26, 0.2);
+  border-radius: 16px;
+  padding: 30px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: hologram-float 3s ease-in-out infinite;
+}
+
+.hologram-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(0, 15, 30, 0.5);
+  border-color: rgba(255, 140, 26, 0.4);
+  box-shadow: 
+    0 20px 60px rgba(255, 140, 26, 0.25),
+    0 0 80px rgba(255, 140, 26, 0.15),
+    inset 0 0 60px rgba(255, 140, 26, 0.08);
+}
+
+@keyframes hologram-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Particle Trails */
+.particle-trail {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ff8c1a 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particle-float 3s infinite;
+  box-shadow: 0 0 10px rgba(255, 140, 26, 0.8);
+}
+
+.trail-2 {
+  animation-delay: 1s;
+  background: radial-gradient(circle, #2a6fff 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(42, 111, 255, 0.8);
+}
+
+.trail-3 {
+  animation-delay: 2s;
+  background: radial-gradient(circle, #00ffd5 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(0, 255, 213, 0.8);
+}
+
+@keyframes particle-float {
+  0% {
+    top: 100%;
+    left: 10%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: -10%;
+    left: 90%;
+    opacity: 0;
+  }
+}
+
+/* Hologram Borders */
+.hologram-border {
+  position: absolute;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 140, 26, 0.8) 50%, 
+    transparent 100%);
+  opacity: 0;
+  animation: border-scan 2s ease-in-out infinite;
+}
+
+.hologram-border.top,
+.hologram-border.bottom {
+  width: 100%;
+  height: 2px;
+  left: 0;
+}
+
+.hologram-border.top {
+  top: 0;
+}
+
+.hologram-border.bottom {
+  bottom: 0;
+  animation-delay: 1s;
+}
+
+.hologram-border.left,
+.hologram-border.right {
+  width: 2px;
+  height: 100%;
+  top: 0;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(90, 42, 130, 0.8) 50%, 
+    transparent 100%);
+}
+
+.hologram-border.left {
+  left: 0;
+  animation-delay: 0.5s;
+}
+
+.hologram-border.right {
+  right: 0;
+  animation-delay: 1.5s;
+}
+
+@keyframes border-scan {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Corner Accents */
+.corner-accent {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.corner-accent.top-left {
+  top: 0;
+  left: 0;
+  border-color: transparent transparent #ff8c1a #ff8c1a;
+  border-bottom-right-radius: 4px;
+}
+
+.corner-accent.top-right {
+  top: 0;
+  right: 0;
+  border-color: transparent #ff8c1a #ff8c1a transparent;
+  border-bottom-left-radius: 4px;
+}
+
+.corner-accent.bottom-left {
+  bottom: 0;
+  left: 0;
+  border-color: #5a2a82 transparent transparent #5a2a82;
+  border-top-right-radius: 4px;
+}
+
+.corner-accent.bottom-right {
+  bottom: 0;
+  right: 0;
+  border-color: #5a2a82 #5a2a82 transparent transparent;
+  border-top-left-radius: 4px;
+}
+
+.hologram-card:hover .corner-accent {
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* Scan Line Effect */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 140, 26, 0.6) 50%, 
+    transparent 100%);
+  animation: scan-down 3s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scan-down {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Neon Glow */
+.neon-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(255, 140, 26, 0.1) 0%, 
+    transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.hologram-card:hover .neon-glow {
+  opacity: 1;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Content */
+.hologram-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glass morphism enhancement */
+.hologram-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 212, 255, 0.1) 0%, 
+    rgba(138, 43, 226, 0.05) 50%,
+    transparent 100%
+  );
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hologram-card:hover::before {
+  opacity: 1;
+}
+
+/* Grid pattern overlay */
+.hologram-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.hologram-card:hover::after {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hologram-card {
+    padding: 20px;
+  }
+  
+  .hologram-card:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+}

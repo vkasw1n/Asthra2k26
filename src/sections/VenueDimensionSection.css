@@ -1,0 +1,324 @@
+.venue-section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 100px 20px;
+  display: block;
+  background: linear-gradient(180deg, 
+    rgba(26, 21, 80, 0.5) 0%, 
+    rgba(15, 10, 46, 0.5) 50%, 
+    rgba(10, 14, 39, 0.5) 100%);
+  visibility: visible;
+  opacity: 1;
+  z-index: 5;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: rgba(255, 140, 26, 0.7);
+  margin-bottom: 60px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.venue-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Holographic Map */
+.holographic-map-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.holographic-map {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 140, 26, 0.4);
+  overflow: hidden;
+}
+
+.map-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 140, 26, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 140, 26, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+.campus-visualization {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.building {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(255, 140, 26, 0.2), rgba(90, 42, 130, 0.2));
+  border: 2px solid #ff8c1a;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 140, 26, 0.3);
+}
+
+.building:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 140, 26, 0.6);
+  border-color: #ffd27a;
+}
+
+.main-building {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tech-block {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 15%;
+}
+
+.meeting-zone {
+  width: 90px;
+  height: 90px;
+  bottom: 25%;
+  right: 20%;
+}
+
+.workshop-hall {
+  width: 110px;
+  height: 110px;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+}
+
+.building-label {
+  font-size: 11px;
+  color: #ff8c1a;
+  font-weight: 700;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.map-glow {
+  position: absolute;
+  inset: -50px;
+  background: radial-gradient(circle at center, rgba(255, 140, 26, 0.2), transparent);
+  animation: map-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes map-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Venue Details Grid */
+.venue-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.venue-card {
+  padding: 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 140, 26, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.venue-card::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 140, 26, 0.1), transparent);
+  transition: top 0.3s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-10px);
+  border-color: #ff8c1a;
+  box-shadow: 0 0 30px rgba(255, 140, 26, 0.2);
+}
+
+.venue-card:hover::before {
+  top: 0;
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-title {
+  font-size: 18px;
+  color: #ff8c1a;
+  margin-bottom: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+}
+
+.card-meta {
+  font-size: 12px;
+  color: rgba(255, 140, 26, 0.6);
+  font-family: 'Space Mono', monospace;
+  position: relative;
+  z-index: 2;
+}
+
+/* Access Section */
+.access-section {
+  padding: 40px;
+  background: linear-gradient(135deg, 
+    rgba(255, 140, 26, 0.05), 
+    rgba(90, 42, 130, 0.05));
+  border: 1px solid rgba(255, 140, 26, 0.2);
+  border-radius: 20px;
+}
+
+.access-title {
+  text-align: center;
+  font-size: 28px;
+  color: #ff8c1a;
+  margin-bottom: 40px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.access-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 140, 26, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.access-card:hover {
+  background: rgba(255, 140, 26, 0.1);
+  border-color: #ff8c1a;
+  transform: translateY(-5px);
+}
+
+.access-icon {
+  font-size: 32px;
+}
+
+.access-card h4 {
+  font-size: 14px;
+  color: #ff8c1a;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+}
+
+.access-card p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .venue-section {
+    padding: 80px 15px;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .holographic-map {
+    max-width: 100%;
+    aspect-ratio: auto;
+    height: 400px;
+  }
+
+  .venue-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .access-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .access-section {
+    padding: 30px 20px;
+  }
+
+  .access-title {
+    font-size: 20px;
+  }
+}

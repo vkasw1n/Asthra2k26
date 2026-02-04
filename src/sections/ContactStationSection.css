@@ -1,0 +1,452 @@
+.contact-section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 100px 20px 0;
+  display: block;
+  background: linear-gradient(180deg, 
+    rgba(26, 21, 80, 0.5) 0%, 
+    rgba(15, 10, 46, 0.5) 50%, 
+    rgba(10, 14, 39, 0.5) 100%);
+  visibility: visible;
+  opacity: 1;
+  z-index: 5;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: rgba(255, 140, 26, 0.7);
+  margin-bottom: 60px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Space Station */
+.space-station {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  flex-shrink: 0;
+}
+
+.station-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ff8c1a, #5a2a82);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    0 0 30px rgba(255, 140, 26, 0.7),
+    0 0 60px rgba(90, 42, 130, 0.4);
+  animation: station-pulse 2s ease-in-out infinite;
+}
+
+@keyframes station-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 30px rgba(255, 140, 26, 0.7), 0 0 60px rgba(90, 42, 130, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 50px rgba(255, 140, 26, 0.8), 0 0 100px rgba(90, 42, 130, 0.5);
+  }
+}
+
+.station-antenna {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  transform-origin: 0 0;
+}
+
+.antenna-1 {
+  height: 120px;
+  background: linear-gradient(90deg, #ff8c1a, transparent);
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: antenna-rotate 3s linear infinite;
+}
+
+.antenna-2 {
+  height: 100px;
+  background: linear-gradient(90deg, #5a2a82, transparent);
+  transform: translate(-50%, -50%) rotate(120deg);
+  animation: antenna-rotate 3s linear infinite 1s;
+}
+
+.antenna-3 {
+  height: 110px;
+  background: linear-gradient(90deg, #ffd27a, transparent);
+  transform: translate(-50%, -50%) rotate(240deg);
+  animation: antenna-rotate 3s linear infinite 2s;
+}
+
+@keyframes antenna-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+    opacity: 0.5;
+  }
+}
+
+/* Contact Content */
+.contact-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Contact Info Grid */
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.info-card {
+  padding: 25px;
+  text-align: center;
+  border: 1px solid rgba(255, 140, 26, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 140, 26, 0.1), transparent);
+  transition: top 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  border-color: #ff8c1a;
+  box-shadow: 0 0 25px rgba(255, 140, 26, 0.2);
+}
+
+.info-card:hover::before {
+  top: 0;
+}
+
+.info-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.info-title {
+  font-size: 14px;
+  color: #ff8c1a;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.info-card p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 2;
+}
+
+.social-links {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.social-link {
+  color: #ff8c1a;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 140, 26, 0.3);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.social-link:hover {
+  background: #ff8c1a;
+  color: #0a0e27;
+  border-color: #ff8c1a;
+}
+
+.info-card a {
+  color: #ff8c1a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.info-card a:hover {
+  color: #ffd27a;
+  text-shadow: 0 0 10px #ff8c1a;
+}
+
+/* Contact Form */
+.contact-form-wrapper {
+  padding: 40px;
+  border: 2px solid rgba(255, 140, 26, 0.4);
+}
+
+.form-title {
+  font-size: 24px;
+  color: #ff8c1a;
+  margin-bottom: 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 12px;
+  color: #ff8c1a;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-input {
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 140, 26, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-input:focus {
+  background: rgba(255, 140, 26, 0.1);
+  border-color: #ff8c1a;
+  box-shadow: 0 0 15px rgba(255, 140, 26, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.send-btn {
+  margin-top: 10px;
+}
+
+.success-notification {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(255, 210, 122, 0.15);
+  border: 1px solid #ffd27a;
+  border-radius: 8px;
+  color: #ffd27a;
+  text-align: center;
+  font-weight: 700;
+  animation: pop-in 0.4s ease-out;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(to top, 
+    rgba(10, 14, 39, 0.95), 
+    rgba(10, 14, 39, 0.8));
+  border-top: 1px solid rgba(255, 140, 26, 0.2);
+  padding: 60px 20px 30px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-title {
+  font-size: 14px;
+  color: #ff8c1a;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-section p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: rgba(255, 140, 26, 0.8);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ff8c1a;
+  text-shadow: 0 0 10px #ff8c1a;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 140, 26, 0.2);
+  border: 1px solid rgba(255, 140, 26, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff8c1a;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.social-icon:hover {
+  background: #ff8c1a;
+  color: #0a0e27;
+  box-shadow: 0 0 15px rgba(255, 140, 26, 0.6);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 140, 26, 0.1);
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 80px 15px 0;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .space-station {
+    width: 100%;
+    height: 200px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-form-wrapper {
+    padding: 30px 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
