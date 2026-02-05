@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import soundManager from '../utils/soundManager';
-import './Navigation.css';
+import React, { useState, useEffect } from "react";
+import soundManager from "../utils/soundManager";
+import "./Navigation.css";
 
-export default function Navigation({ sections, currentSection, setCurrentSection, musicEnabled, setMusicEnabled }) {
+export default function Navigation({
+  sections,
+  currentSection,
+  setCurrentSection,
+  musicEnabled,
+  setMusicEnabled,
+}) {
   const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     if (musicEnabled) {
@@ -12,6 +19,14 @@ export default function Navigation({ sections, currentSection, setCurrentSection
       soundManager.disable();
     }
   }, [musicEnabled]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (sectionId) => {
     soundManager.playEnergyBurst();
@@ -25,49 +40,90 @@ export default function Navigation({ sections, currentSection, setCurrentSection
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation marvel-nav ${scrolled ? "scrolled" : ""}`}>
+      {/* Multiverse Portal Effects */}
+      <div className="nav-portal-effects">
+        <div className="portal-ring portal-ring-1"></div>
+        <div className="portal-ring portal-ring-2"></div>
+        <div className="nav-sparks">
+          <span className="nav-spark"></span>
+          <span className="nav-spark"></span>
+          <span className="nav-spark"></span>
+        </div>
+      </div>
+
+      {/* Infinity Stone Indicators */}
+      <div className="nav-stones">
+        <span className="nav-stone stone-power"></span>
+        <span className="nav-stone stone-space"></span>
+        <span className="nav-stone stone-time"></span>
+      </div>
+
       <div className="nav-container">
-        {/* Logo/Brand */}
-        <div className="nav-logo">
-          <div className="logo-symbol">◇</div>
-          <span className="logo-text glow-text">MULTIVERSE</span>
+        {/* Marvel-Style Logo */}
+        <div className="nav-logo marvel-logo">
+          <div className="logo-portal">
+            <div className="portal-inner-glow"></div>
+            <div className="logo-symbol">∞</div>
+          </div>
+          <div className="logo-text-container">
+            <span className="logo-text marvel-text">MULTIVERSE</span>
+            <span className="logo-subtitle">SYMPOSIUM 2026</span>
+          </div>
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button className="menu-toggle" onClick={() => setNavOpen(!navOpen)}>
+        <button
+          className={`menu-toggle marvel-toggle ${navOpen ? "active" : ""}`}
+          onClick={() => setNavOpen(!navOpen)}
+        >
           <span></span>
           <span></span>
           <span></span>
+          <div className="toggle-glow"></div>
         </button>
 
         {/* Navigation Links */}
-        <ul className={`nav-links ${navOpen ? 'active' : ''}`}>
-          {sections.map(section => (
+        <ul className={`nav-links marvel-links ${navOpen ? "active" : ""}`}>
+          {sections.map((section, index) => (
             <li key={section.id}>
               <button
-                className={`nav-link ${currentSection === section.id ? 'active' : ''}`}
+                className={`nav-link marvel-link ${currentSection === section.id ? "active" : ""}`}
                 onClick={() => handleNavClick(section.id)}
                 onMouseEnter={() => soundManager.playButtonHover()}
+                style={{ "--delay": `${index * 0.1}s` }}
               >
-                {section.label}
+                <span className="link-text">{section.label}</span>
+                <span className="link-glow"></span>
+                <span className="link-spark"></span>
               </button>
             </li>
           ))}
         </ul>
 
-        {/* Music Toggle */}
-        <button 
-          className={`music-toggle ${musicEnabled ? 'active' : ''}`}
+        {/* Marvel Music Toggle */}
+        <button
+          className={`music-toggle marvel-music ${musicEnabled ? "active" : ""}`}
           onClick={handleMusicToggle}
           onMouseEnter={() => soundManager.playButtonHover()}
-          title={musicEnabled ? 'Sound On' : 'Sound Off'}
+          title={musicEnabled ? "Sound On" : "Sound Off"}
         >
-          {musicEnabled ? '🔊' : '🔇'}
+          <span className="music-icon">{musicEnabled ? "🔊" : "🔇"}</span>
+          <div className="music-rings">
+            <span className="music-ring"></span>
+            <span className="music-ring"></span>
+          </div>
         </button>
       </div>
 
-      {/* Animated background line */}
-      <div className="nav-line"></div>
+      {/* Animated Energy Lines */}
+      <div className="nav-energy-lines">
+        <div className="energy-line line-1"></div>
+        <div className="energy-line line-2"></div>
+      </div>
+
+      {/* Portal Edge Effect */}
+      <div className="nav-portal-edge"></div>
     </nav>
   );
 }
